@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>LTY&#39;s blog</title>
+  <icon>https://lty.dee.al/icon.png</icon>
+  
+  <link href="https://lty.dee.al/atom.xml" rel="self"/>
+  
+  <link href="https://lty.dee.al/"/>
+  <updated>2022-12-07T11:55:13.098Z</updated>
+  <id>https://lty.dee.al/</id>
+  
+  <author>
+    <name>LTY</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用wgcf工具创建wireguard连接配置</title>
+    <link href="https://lty.dee.al/10-29/wcgf/"/>
+    <id>https://lty.dee.al/10-29/wcgf/</id>
+    <published>2022-10-29T21:50:00.000Z</published>
+    <updated>2022-12-07T11:55:13.098Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-从VPS下载wcgf配置文件&quot;&gt;&lt;a href=&quot;#1-从VPS下载wcgf配置文件&quot; class=&quot;headerlink&quot; title=&quot;1.从VPS下载wcgf配置文件&quot;&gt;&lt;/a&gt;1.从VPS下载wcgf配置文件&lt;/h2&gt;&lt;p&gt;1.ssh连接 vps</summary>
+        
+      
+    
+    
+    
+    <category term="科学上网" scheme="https://lty.dee.al/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+    
+    <category term="wgcf" scheme="https://lty.dee.al/tags/wgcf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ipv6 only 使用warp访问ipv4资源</title>
+    <link href="https://lty.dee.al/05-21/hello/"/>
+    <id>https://lty.dee.al/05-21/hello/</id>
+    <published>2022-05-21T20:30:00.000Z</published>
+    <updated>2022-12-07T11:55:13.098Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;1-使用cloudflare提供的warp&quot;&gt;&lt;a href=&quot;#1-使用cloudflare提供的warp&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="vps" scheme="https://lty.dee.al/categories/vps/"/>
+    
+    
+    <category term="warp" scheme="https://lty.dee.al/tags/warp/"/>
+    
+  </entry>
+  
+</feed>

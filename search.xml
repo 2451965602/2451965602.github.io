@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>使用wgcf工具创建wireguard连接配置</title>
+      <link href="/10-29/wcgf/"/>
+      <url>/10-29/wcgf/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-从VPS下载wcgf配置文件"><a href="#1-从VPS下载wcgf配置文件" class="headerlink" title="1.从VPS下载wcgf配置文件"></a>1.从VPS下载wcgf配置文件</h2><p>1.ssh连接 vps 下载 <code>warp-go</code> 建立 wgcf 连接 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N https://raw.githubusercontent.com/fscarmen/warp/main/warp-go.sh &amp;&amp; bash warp-go.sh [option] [lisence]</span><br></pre></td></tr></table></figure><p>2.使用以下命令输出<code>wireguard</code>配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">warp-go e</span><br></pre></td></tr></table></figure><p>或先<code>warp-go</code>进入主菜单，选择输出 wcgf 配置文件<br><img src="https://s2.loli.net/2022/10/30/qcX5AS3dVWfM2TR.png" style="zoom:50%;" /><br>3.拷贝 ssh 中输出的配置，在wireguard中创建新隧道并黏贴配置<br><img src="https://s2.loli.net/2022/10/30/moaV9SWFQgy8wp5.png" style="zoom: 50%;" /><br>4.更改 <code>endpoint</code> 为网站末尾的可用地址或<code>engage.nanocat.me:2408</code><br>5.连接隧道，如接收端出现非0数值，则为连接成功</p><h2 id="2-本地配置wgcf"><a href="#2-本地配置wgcf" class="headerlink" title="2.本地配置wgcf"></a>2.本地配置wgcf</h2><ol><li><p>打开<a href="https://web.archive.org/web/20221023133728/https://github.com/ViRb3/wgcf/releases">Wgcf下载页面</a>，选择最新的版本进行下载</p></li><li><p>在下载目录中打开命令行，输入以下命令</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./wgcf_2.2.14_windows_amd64.exe register --accept-tos</span><br></pre></td></tr></table></figure></li><li><p>如需升级WARP+账户，修改<code>wgcf-account.toml</code>里面的<code>license_key</code>后面的字符串</p><img src="https://s2.loli.net/2022/10/29/rHPnd38ShmVMF7a.png" style="zoom:50%;" /></li><li><p>输入下面命令升级账号，如出现“Limited”字样则为升级成功</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./wgcf_2.2.15_windows_amd64.exe update --name 希望设定的设备名称</span><br></pre></td></tr></table></figure></li><li><p>输入下面命令生成配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./wgcf_2.2.14_windows_amd64.exe generate</span><br></pre></td></tr></table></figure></li><li><p>修改配置文件<code>wgcf-profile.conf</code>的EndPoint为下面说明中的任意一个IP和端口。如需使用WARP Teams账户需从客户端配置文件中找到私钥和IPv6地址，复制粘贴替换即可</p></li><li><p>可以使用<a href="https://web.archive.org/web/20221023133728/https://www.craft.do/s/avqa8GJuLbLsFv">薯条面板</a>所提供的EndPoint 地址：<code>engage.nanocat.me:2408</code></p><img src="https://s2.loli.net/2022/10/29/84WTJwKAiMEbmZ1.png" style="zoom:50%;" /><p>Endpoint IPV4地址：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">162.159.193.1（1其取值范围为1-10）</span><br><span class="line">162.159.192.1（1的取值范围0-254）</span><br><span class="line">162.159.195.1（1的取值范围0-254）</span><br></pre></td></tr></table></figure><p>Endpoint IPV6地址:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[2606:4700:d0::]</span><br><span class="line">[2606:4700:d1::]</span><br><span class="line"></span><br><span class="line">::后也可增加取值xxxx:xxxx，举例：2606:4700:d1::1111:1111，取值范围不再赘述，自行谷歌，填入客户端没报错，说明取值可用</span><br></pre></td></tr></table></figure><p>Endpoint端口：2408、1701、500、4500、908</p></li><li><p>在WireGuard客户端内新建一个空隧道，将配置文件内容复制粘贴至里面</p></li><li><p>连接隧道，如接收端出现非0数值，则为连接成功</p></li></ol><img src="https://s2.loli.net/2022/10/29/7i1rtha64nl3bYA.png" style="zoom:50%;" /><p>  参考文章<a href="https://blog.misaka.rest/2022/10/01/wgcf-warp-wg/">https://blog.misaka.rest/2022/10/01/wgcf-warp-wg/</a> 来自 <a href="https://blog.misaka.rest/">MisakaNo の 小破站</a>！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 科学上网 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> wgcf </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ipv6 only 使用warp访问ipv4资源</title>
+      <link href="/05-21/hello/"/>
+      <url>/05-21/hello/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-使用cloudflare提供的warp"><a href="#1-使用cloudflare提供的warp" class="headerlink" title="1.使用cloudflare提供的warp"></a>1.使用cloudflare提供的warp</h2><p>项目地址：<a href="https://github.com/fscarmen/warp">https://github.com/fscarmen/warp</a><br><strong>1.1 使用WGCF</strong><br>首次运行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh &amp;&amp; bash menu.sh [option] [lisence]</span><br></pre></td></tr></table></figure><p>再次运行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">warp [option] [lisence]</span><br></pre></td></tr></table></figure><img src="https://alpha-q3.sourcegcdn.com/2022/09/17/ZkCd4aB6.JPG" alt="2022/09/17/ZkCd4aB6.JPG" style="zoom:50%;" />## WARP+ License 及 ID 获取<p>以下是使用WARP和Team后 Argo 2.0 的官方介绍:<a href="https://blog.cloudflare.com/argo-v2/">Argo 2.0: Smart Routing Learns New Tricks</a></p><p>引用Luminous大神原话：实际测试WARP+在访问非CF的网站速度上和免费版没有差异，只有在访问CloudFlare的站点时付费版会通过Argo类似的技术通过与目标较近的数据中心前往源站，而免费版是仅限于连接地前往源站，仅此而已。<br><img src="https://alpha-q3.sourcegcdn.com/2022/09/17/FtzpOOkH.png" alt="2022/09/17/FtzpOOkH.png" style="zoom:50%;" /></p><h2 id="2-使用warp-go"><a href="#2-使用warp-go" class="headerlink" title="2.使用warp go"></a>2.使用warp go</h2><p>项目地址: <a href="https://gitlab.com/ProjectWARP/warp-go/-/tree/master/">https://gitlab.com/ProjectWARP/warp-go/-/tree/master/</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N https://raw.githubusercontent.com/fscarmen/warp/main/warp-go.sh &amp;&amp; bash warp-go.sh [option] [lisence]</span><br></pre></td></tr></table></figure><h2 id="3-使用dns64"><a href="#3-使用dns64" class="headerlink" title="3.使用dns64"></a>3.使用dns64</h2><p><strong>芬兰</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;nameserver 2001:67c:2b0::4\nnameserver 2001:67c:2b0::6&quot; &gt; /etc/resolv.conf</span><br></pre></td></tr></table></figure><p><strong>德国</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;nameserver 2a01:4f8:c2c:123f::1\nnameserver 2a00:1098:2c::1\nnameserver 2a01:4f9:c010:3f02::1&quot; &gt; /etc/resolv.conf</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> vps </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> warp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[<p>-科学上网<br>-vps</p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
+      
+        <content type="html"><![CDATA[/*哔哩哔哩视频适配*/.aspect-ratio {position: relative;width: 100%;height: 0;padding-bottom: 75%;margin: 3% auto;text-align: center;}      .aspect-ratio iframe {    position: absolute;    width: 100%;    height: 100%;    left: 0;    top: 0;}/* 文章页H1-H6图标样式效果 */h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {    -webkit-animation: ccc 1.6s linear infinite ;    animation: ccc 1.6s linear infinite ;}@-webkit-keyframes ccc {    0% {        -webkit-transform: rotate(0deg);        transform: rotate(0deg)    }    to {        -webkit-transform: rotate(-1turn);        transform: rotate(-1turn)    }}@keyframes ccc {    0% {        -webkit-transform: rotate(0deg);        transform: rotate(0deg)    }    to {        -webkit-transform: rotate(-1turn);        transform: rotate(-1turn)    }}#content-inner.layout h1::before {    color: #ef50a8 ;    margin-left: -1.55rem;    font-size: 1.3rem;    margin-top: -0.23rem;}#content-inner.layout h2::before {    color: #fb7061 ;    margin-left: -1.35rem;    font-size: 1.1rem;    margin-top: -0.12rem;}#content-inner.layout h3::before {    color: #ffbf00 ;    margin-left: -1.22rem;    font-size: 0.95rem;    margin-top: -0.09rem;}#content-inner.layout h4::before {    color: #a9e000 ;    margin-left: -1.05rem;    font-size: 0.8rem;    margin-top: -0.09rem;}#content-inner.layout h5::before {    color: #57c850 ;    margin-left: -0.9rem;    font-size: 0.7rem;    margin-top: 0.0rem;}#content-inner.layout h6::before {    color: #5ec1e0 ;    margin-left: -0.9rem;    font-size: 0.66rem;    margin-top: 0.0rem;}/* 页面设置icon转动速度调整 */#rightside_config i.fas.fa-cog.fa-spin {    animation: fa-spin 5s linear infinite ;}#content-inner.layout h1:hover, #content-inner.layout h2:hover, #content-inner.layout h3:hover, #content-inner.layout h4:hover, #content-inner.layout h5:hover, #content-inner.layout h6:hover {    color: #49b1f5 ;}#content-inner.layout h1:hover::before, #content-inner.layout h2:hover::before, #content-inner.layout h3:hover::before, #content-inner.layout h4:hover::before, #content-inner.layout h5:hover::before, #content-inner.layout h6:hover::before {    color: #49b1f5 ;    -webkit-animation: ccc 3.2s linear infinite ;    animation: ccc 3.2s linear infinite ;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>link</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>tags</title>
+      <link href="/tags/index.html"/>
+      <url>/tags/index.html</url>
+      
+        <content type="html"><![CDATA[<p>-vps</p>]]></content>
+      
+    </entry>
+    
+    
+  
+</search>
